@@ -2,8 +2,8 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'gatsby-starter-typescript-plus',
-    description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
+    title: 'Rock-a-teria',
+    description: 'An Awesome Music Blog',
     siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
     author: {
       name: 'Resi Respati',
