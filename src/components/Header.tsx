@@ -1,29 +1,37 @@
 import * as React from 'react'
 import styled from 'react-emotion'
+
 import { transparentize } from 'polished'
+
 import { Link } from 'gatsby'
 
-import { heights, dimensions, colors } from '../styles/variables'
-import Container from './Container'
+import logo from '../assets/logo.jpg'
+
+import { colors, dimensions, heights } from '../styles/variables'
 
 const StyledHeader = styled.header`
   height: ${heights.header}px;
   padding: 0 ${dimensions.containerPadding}rem;
-  background-color: ${colors.brand};
+  background-color: ${colors.gray.medium};
   color: ${transparentize(0.5, colors.white)};
 `
 
-const HeaderInner = styled(Container)`
+const HeaderInner = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 100%;
 `
 
+const Logo = styled.img`
+  height: ${heights.header - 10}px;
+`
+
 const HomepageLink = styled(Link)`
   color: ${colors.white};
   font-size: 1.5rem;
   font-weight: 600;
+  margin-left: 1rem;
 
   &:hover,
   &:focus {
@@ -38,6 +46,7 @@ interface HeaderProps {
 const Header: React.SFC<HeaderProps> = ({ title }) => (
   <StyledHeader>
     <HeaderInner>
+      <Logo src={logo} />
       <HomepageLink to="/">{title}</HomepageLink>
     </HeaderInner>
   </StyledHeader>

@@ -1,15 +1,15 @@
 import * as React from 'react'
 import styled from 'react-emotion'
 
-import { widths } from '../styles/variables'
 import { getEmSize } from '../styles/mixins'
+import { widths } from '../styles/variables'
 
 const StyledContainer = styled.div`
   position: relative;
   margin-left: auto;
   margin-right: auto;
   width: auto;
-  max-width: ${getEmSize(widths.lg)}em;
+  max-width: ${getEmSize(widths.md)}em;
 `
 
 interface ContainerProps {

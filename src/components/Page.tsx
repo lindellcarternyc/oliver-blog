@@ -15,6 +15,7 @@ interface PageProps {
   className?: string
 }
 
+// tslint:disable-next-line:max-line-length
 const Page: React.SFC<PageProps> = ({ children, className }) => <StyledPage className={className}>{children}</StyledPage>
 
 export default Page
