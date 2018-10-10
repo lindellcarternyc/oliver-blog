@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import Header, { HeaderProps } from './Header/Header'
+import Header from './Header/Header'
 import Sidebar from './Sidebar'
 
 import { widths } from '../styles/variables'
 
-type NavigationProps = HeaderProps
+interface NavigationProps {
+  title: string
+}
 
 interface NavigationState {
   isSidebarVisible: boolean
