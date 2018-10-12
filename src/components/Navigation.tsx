@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import Header from './Header/Header'
+import Header from './Header'
 import Sidebar from './Sidebar'
 
 import { widths } from '../styles/variables'
@@ -72,10 +72,7 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
     }
   }
 
-  private closeSidebar = (evt: React.SyntheticEvent<HTMLButtonElement>) => {
-    evt.preventDefault()
-    evt.stopPropagation()
-
+  private closeSidebar = () => {
     return this.setState({ isSidebarVisible: false })
   }
 
