@@ -2,6 +2,16 @@
 
 const path = require('path')
 
+const parseReviewDate = (fullDate) => {
+  if (fullDate.length < 1) { return fullDate }
+
+  const [m, d] = fullDate
+    .split('-')
+    .slice(1)
+    .map(str => str.slice(0, 2))
+  return `${m}/${d}`
+}
+
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
@@ -12,7 +22,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   switch (node.internal.type) {
     case 'MarkdownRemark': {
-      const { permalink, layout } = node.frontmatter
+      const { permalink, layout,
+        reviewDate
+      } = node.frontmatter
       const { relativePath } = getNode(node.parent)
 
       let slug = permalink
@@ -33,6 +45,20 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         node,
         name: 'layout',
         value: layout || ''
+      })
+
+      let parsedDate
+      if (reviewDate) {
+        parsedDate = parseReviewDate(reviewDate)
+      } else {
+        parsedDate = ''
+      }
+
+      // Review date.
+      createNodeField({
+        node,
+        name: 'reviewDate',
+        value: parsedDate
       })
     }
   }
@@ -63,6 +89,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allMarkdown.data.allMarkdownRemark.edges.forEach(({ node }) => {
     const { slug, layout } = node.fields
+    const layoutPath = `${layout}.template` || 'review.template'
 
     createPage({
       path: slug,
@@ -75,7 +102,7 @@ exports.createPages = async ({ graphql, actions }) => {
       // template.
       //
       // Note that the template has to exist first, or else the build will fail.
-      component: path.resolve(`./src/templates/${layout || 'page'}.tsx`),
+      component: path.resolve(`./src/templates/${layoutPath}.tsx`),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug
