@@ -1,6 +1,7 @@
 /* tslint:disable:max-line-length */
 
 export const colors = {
+  special: 'green',
   brand: '#663399',
   lilac: '#9d7cbf',
   accent: '#ffb238',
@@ -40,7 +41,8 @@ export const breakpoints = {
 export const widths = {
   md: 720,
   lg: 960,
-  xl: 1140
+  xl: 1140,
+  sidebar: 175
 }
 
 export const dimensions = {

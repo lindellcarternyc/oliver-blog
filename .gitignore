@@ -2,6 +2,9 @@
 # Node.js-Specific Ignores
 # =========================
 
+# Personal scripts
+scripts/
+
 # Build directory
 public/
 
